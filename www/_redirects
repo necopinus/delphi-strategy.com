@@ -1,0 +1,21 @@
+# https://docs.netlify.com/routing/redirects/#syntax-for-the-redirects-file
+#
+/                                                                                          https://necopinus.xyz/delphi-strategy.html
+/newsletters/                                                                              https://necopinus.xyz/newsletters.html
+/essays/                                                                                   https://necopinus.xyz/essays.html
+/essays/2016/10/08/the-challenge-of-a-post-scarcity-transition/                            https://necopinus.xyz/essays/2016-10-08-the-challenge-of-a-post-scarcity-transition.html
+/newsletters/2018/10/03/other-decisions-can-be-made/                                       https://necopinus.xyz/newsletters/2018-10-03-other-decisions-can-be-made.html
+/newsletters/2018/09/23/where-homo-sapiens-is-headed/                                      https://necopinus.xyz/newsletters/2018-09-23-where-homo-sapiens-is-headed.html
+/newsletters/2018/02/18/something-of-adaptive-value-to-human-life/                         https://necopinus.xyz/newsletters/2018-02-18-something-of-adaptive-value-to-human-life.html
+/newsletters/2018/02/11/surprise-must-hide-in-secret-worlds/                               https://necopinus.xyz/newsletters/2018-02-11-surprise-must-hide-in-secret-worlds.html
+/newsletters/2018/01/28/the-last-remaining-hominin/                                        https://necopinus.xyz/newsletters/2018-01-28-the-last-remaining-hominin.html
+/newsletters/2018/01/20/everything-was-stripped-away/                                      https://necopinus.xyz/newsletters/2018-01-20-everything-was-stripped-away.html
+/newsletters/2018/01/14/an-error-of-scale/                                                 https://necopinus.xyz/newsletters/2018-01-14-an-error-of-scale.html
+/newsletters/2016/12/18/and-we-will-know-him-for-a-thousand-years/                         https://necopinus.xyz/newsletters/2016-12-18-and-we-will-know-him-for-a-thousand-years.html
+/newsletters/2016/10/17/pervasive-and-obligatory-features/                                 https://necopinus.xyz/newsletters/2016-10-17-pervasive-and-obligatory-features.html
+/newsletters/2016/10/01/when-the-sea-came-in-and-covered-the-land/                         https://necopinus.xyz/newsletters/2016-10-01-when-the-sea-came-in-and-covered-the-land.html
+/newsletters/2016/09/19/enough-behavioral-flexibility-to-persist-in-a-disturbed-landscape/ https://necopinus.xyz/newsletters/2016-09-19-enough-behavioral-flexibility-to-persist-in-a-disturbed-landscape.html
+/newsletters/2016/09/05/a-matter-of-intense-but-mostly-theoretical-debate/                 https://necopinus.xyz/newsletters/2016-09-05-a-matter-of-intense-but-mostly-theoretical-debate.html
+/newsletters/2016/08/21/im-not-saying-its-aliens.../                                       https://necopinus.xyz/newsletters/2016-08-21-im-not-saying-its-aliens.html
+/newsletters/2016/08/15/a-slow-rate-of-reproduction/                                       https://necopinus.xyz/newsletters/2016-08-15-a-slow-rate-of-reproduction.html
+/newsletters/2016/08/09/camp-century/                                                      https://necopinus.xyz/newsletters/2016-08-09-camp-century.html
