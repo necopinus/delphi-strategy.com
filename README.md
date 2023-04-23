@@ -1,3 +1,3 @@
-# delphi-strategy.com
+# Delphi Foresight Strategy
 
-Redirects for delphi-strategy.com → necopinus.xyz.
+Landing page for <https://www.delphi-strategy.com>.
