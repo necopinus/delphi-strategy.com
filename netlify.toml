@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "https://www.delphi-strategy.com/zibaldone/*"
+  to = "https://publish.obsidian.md/serve?url=www.delphi-strategy.com/zibaldone/:splat"
+  status = 200
+  force = true
