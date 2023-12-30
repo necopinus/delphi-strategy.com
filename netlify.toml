@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "https://www.delphi-strategy.com/Remarks/*"
-  to = "https://publish.obsidian.md/serve?url=www.delphi-strategy.com/Remarks/:splat"
+  from = "https://www.delphi-strategy.com/Some+Remarks/*"
+  to = "https://publish.obsidian.md/serve?url=www.delphi-strategy.com/Some+Remarks/:splat"
   status = 200
   force = true
