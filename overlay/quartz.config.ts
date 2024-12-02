@@ -23,6 +23,7 @@ const config: QuartzConfig = {
       "templates"
     ],
     defaultDateType: "created",
+    generateSocialImages: true,
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
