@@ -295,58 +295,62 @@ footer ul {
 	}
 }
 
+/* Callout colors to match theme */
 .callout{
 	&[data-callout],
-	&[data-callout="abstract"] {
-		--color: #7fbbb3;
-		--border: #7fbbb344;
-		--bg: #7fbbb310;
+	&[data-callout="abstract"],
+	&[data-callout="note"] {
+		--color: #6c99bb;
+		--border: #6c99bb44;
+		--bg: #6c99bb10;
 	}
 
-	&[data-callout="info"],
+	&[data-callout="info"] {
+		--color: #73bbb2;
+		--border: #73bbb244;
+		--bg: #73bbb210;
+	}
+
+	&[data-callout="success"],
 	&[data-callout="tip"] {
-		--color: #83c092;
-		--border: #83c09244;
-		--bg: #83c09210;
-	}
-
-	&[data-callout="success"] {
-		--color: #a7c080;
-		--border: #a7c08044;
-		--bg: #a7c08010;
+		--color: #a8c373;
+		--border: #a8c37344;
+		--bg: #a8c37310;
 	}
 
 
 	&[data-callout="question"],
-	&[data-callout="todo"] {
-		--color: #dbbc7f;
-		--border: #dbbc7f44;
-		--bg: #dbbc7f10;
+	&[data-callout="todo"],
+	&[data-callout="warning"] {
+		--color: #e5b567;
+		--border: #e5b56744;
+		--bg: #e5b56710;
 	}
 
-	&[data-callout="danger"],
-	&[data-callout="warning"] {
-		--color: #e69875;
-		--border: #e6987544;
-		--bg: #e6987510;
+	&[data-callout="danger"] {
+		--color: #d5763f;
+		--border: #d5763f44;
+		--bg: #d5763f10;
 	}
 
 	&[data-callout="bug"],
+	&[data-callout="caution"],
 	&[data-callout="failure"] {
-		--color: #e67e80;
-		--border: #e67e8044;
-		--bg: #e67e8010;
+		--color: #d04255;
+		--border: #d0425544;
+		--bg: #d0425510;
 	}
 
-	&[data-callout="example"] {
-		--color: #d699b6;
-		--border: #d699b644;
-		--bg: #d699b610;
+	&[data-callout="example"],
+	&[data-callout="important"] {
+		--color: #9e86c8;
+		--border: #9e86c844;
+		--bg: #9e86c810;
 	}
 
 	&[data-callout="quote"] {
-		--color: var(--gray);
-		--border: var(--lightgray);
-		--bg: var(--highlight);
+		--color: #9e9e9e;
+		--border: #9e9e9e44;
+		--bg: #9e9e9e10;
 	}
 }
