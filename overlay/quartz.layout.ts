@@ -28,7 +28,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer({
+    Component.DesktopOnly(Component.Explorer(/*{
       folderDefaultState: "open",
       sortFn: (a, b) => {
         if ((!a.file && !b.file) || (a.file && b.file)) {
@@ -52,7 +52,7 @@ export const defaultContentPageLayout: PageLayout = {
           return -1
         }
       }
-    }))
+    }*/))
   ],
   right: [
     Component.Graph(),
@@ -61,7 +61,7 @@ export const defaultContentPageLayout: PageLayout = {
   ]
 }
 
-// components for pages that display lists of pages (e.g. tags or folders)
+// components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
   left: [
@@ -69,7 +69,6 @@ export const defaultListPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.TagList()),
     Component.DesktopOnly(Component.Explorer())
   ],
   right: []

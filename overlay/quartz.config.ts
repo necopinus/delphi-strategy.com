@@ -90,9 +90,7 @@ const config: QuartzConfig = {
         openLinksInNewTab: true,
         lazyLoad: true
       }),
-      Plugin.Description({
-        descriptionLength: 512
-      }),
+      Plugin.Description(),
       Plugin.Latex({
         renderEngine: "mathjax"
       })
@@ -103,7 +101,7 @@ const config: QuartzConfig = {
     emitters: [
       Plugin.ComponentResources(),
       Plugin.ContentPage(),
-      Plugin.TagPage({
+      Plugin.FolderPage(/*{
         sort: (a, b) => {
           if ((!a.file && !b.file) || (a.file && b.file)) {
             if ((typeof a.file?.frontmatter?.quartzSortString === "string") && (typeof b.file?.frontmatter?.quartzSortString === "string")) {
@@ -126,7 +124,31 @@ const config: QuartzConfig = {
             return -1
           }
         }
-      }),
+      }*/),
+      Plugin.TagPage(/*{
+        sort: (a, b) => {
+          if ((!a.file && !b.file) || (a.file && b.file)) {
+            if ((typeof a.file?.frontmatter?.quartzSortString === "string") && (typeof b.file?.frontmatter?.quartzSortString === "string")) {
+                return a.file.frontmatter.quartzSortString.localeCompare(b.file.frontmatter.quartzSortString, undefined, {
+                  numeric: true,
+                  sensitivity: "base",
+                  ignorePunctuation: true
+                })
+            } else {
+              return a.displayName.localeCompare(b.displayName, undefined, {
+                numeric: true,
+                sensitivity: "base",
+                ignorePunctuation: true
+              })
+            }
+          }
+          if (a.file && !b.file) {
+            return 1
+          } else {
+            return -1
+          }
+        }
+      }*/),
       Plugin.ContentIndex({
         rssLimit: 1024,
         rssFullHtml: true,
