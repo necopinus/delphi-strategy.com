@@ -4,10 +4,15 @@ OBSIDIAN_VAULT="some-remarks"
 
 set -e
 
-# Make sure yarn is available.
+# Make sure yarn and gawk are available.
 #
 if [[ -z "$(which yarn 2> /dev/null)" ]]; then
-	echo "Could not find yarn in the system PATH!"
+	echo "Could not find yarn in your system's PATH!"
+	exit 1
+fi
+
+if [[ -z "$(which gawk 2> /dev/null)" ]]; then
+	echo "Could not find gawk in your system's PATH!"
 	exit 1
 fi
 
@@ -15,7 +20,7 @@ fi
 #
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-if [[ ! -d "$SCRIPT_DIR/.git" ]] || [[ ! -d "$SCRIPT_DIR/overlay" ]] || [[ ! -d "$SCRIPT_DIR/www/$OBSIDIAN_VAULT" ]]; then
+if [[ ! -d "$SCRIPT_DIR/.git" ]] || [[ ! -d "$SCRIPT_DIR/overlay" ]] || [[ ! -d "$SCRIPT_DIR/www" ]]; then
 	echo "Could not locate website git repo!"
 	exit 1
 fi
@@ -35,46 +40,79 @@ else
 	exit 1
 fi
 
+# Clean build directory and exit if instructed  to do so
+#
+if [[ "$1" == "clean" ]]; then
+	(
+		cd "$SCRIPT_DIR"
+
+		[[ -e build ]] && rm -rf build
+	)
+	exit
+fi
+
 # Set up the build directory.
 #
 (
 	cd "$SCRIPT_DIR"
 
-	[[ -e build ]] && rm -rf build
-	git clone https://github.com/jackyzha0/quartz.git build
-	rm -rf build/.git
-	rm -f build/package-lock.json
-
-	cp -af overlay/* build/
-
-	[[ -e "www/$OBSIDIAN_VAULT" ]] && rm -rf "www/$OBSIDIAN_VAULT"
-	mkdir -p "www/$OBSIDIAN_VAULT"
-
+	mkdir --parents build
 	cd build
+
+	[[ ! -d obsidian ]] && rm -f obsidian
+	if [[ ! -e obsidian ]]; then
+		cp -af "$DATA_DIR" obsidian
+		cd obsidian
+		rm -rf .obsidian \
+		       .trash \
+		       assets/private \
+		       metadata \
+		       templates
+		find . -type f \( -name '.DS_Store' -o -name '.nomedia' \) -delete
+		find . -type f -iname '*.md' -exec gawk -i inplace '{ _ = 0 }; \
+		     match($0, /(.*)!\[([^\]]+)\]\(([^:\)]+)\)(.*)/, u) { \
+		         _ = 1; \
+		         gsub("%20", " ", u[3]); \
+		         printf("%s![[%s|%s]]%s\n", u[1], u[3], u[2], u[4]) \
+		     }; !_ { print $0 }' "{}" \;
+		cd ..
+	fi
+
+	[[ ! -d quartz ]] && rm -f quartz
+	if [[ ! -e quartz ]]; then
+		cp -af ../quartz quartz
+	fi
+
+	cp -af ../overlay/* quartz/
+	cd quartz
+	[[ -e .git ]] && rm -rf .git
+	[[ -e package-lock.json ]] && rm -f package-lock.json
 	yarn install
 )
 
 # Build the site!
 #
-if [[ "$1" == "serve" ]]; then
-	(
-		cd "$SCRIPT_DIR/build"
+(
+	cd "$SCRIPT_DIR"
+
+	[[ -e "www/$OBSIDIAN_VAULT" ]] && rm -rf "www/$OBSIDIAN_VAULT"
+	mkdir -p "www/$OBSIDIAN_VAULT"
+
+	cd build/quartz
+	if [[ "$1" == "serve" ]]; then
 		yarn run quartz build \
-			--directory "$DATA_DIR" \
-			--output "$SCRIPT_DIR/www/$OBSIDIAN_VAULT" \
+			--directory ../obsidian \
+			--output ../../www/"$OBSIDIAN_VAULT" \
 			--serve
-	)
-else
-	(
-		cd "$SCRIPT_DIR/build"
+	else
 		yarn run quartz build \
-			--directory "$DATA_DIR" \
-			--output "$SCRIPT_DIR/www/$OBSIDIAN_VAULT"
-		
-		cd "$SCRIPT_DIR/www/$OBSIDIAN_VAULT"
+			--directory ../obsidian \
+			--output ../../www/"$OBSIDIAN_VAULT"
+
+		cd ../../www/"$OBSIDIAN_VAULT"
 		while IFS= read -d '' -r DIR; do
 			DIR_NAME="$(basename "$DIR")"
 			sed -i'' "s#href=\"\./$DIR_NAME/\.\./\.\./#href=\"./$DIR_NAME/../#g" index.html
 		done < <(find . -mindepth 1 -maxdepth 1 -type d -print0)
-	)
-fi
+	fi
+)
