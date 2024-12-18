@@ -9,9 +9,9 @@ import * as Plugin from "./quartz/plugins"
 const config: QuartzConfig = {
   configuration: {
     pageTitle:           "Delphi Foresight Strategy",
-    pageTitleSuffix:     "",
+    pageTitleSuffix:     " :: Delphi Foresight Strategy",
     enableSPA:           true,
-    enablePopovers:      true,
+    enablePopovers:      false,
     analytics:           null,
     locale:              "en-US",
     baseUrl:             "delphi-strategy.com/some-remarks",
@@ -20,7 +20,7 @@ const config: QuartzConfig = {
     generateSocialImages: true,
     theme: {
       fontOrigin: "googleFonts",
-      cdnCaching: false,
+      cdnCaching: true,
       typography: {
         header: "Noto Sans",
         body:   "Noto Sans",
@@ -29,8 +29,8 @@ const config: QuartzConfig = {
       colors: {
         lightMode: {
           light:         "hsla( 0,   0%, 100%, 100%)", // --bg1
-          lightgray:     "hsla( 0,   0%,  90%, 100%)", // --ui1
-          gray:          "hsla( 0,   0%,  76%, 100%)", // --ui3
+          lightgray:     "hsla( 0,   0%,  96%, 100%)", // --bg2
+          gray:          "hsla( 0,   0%,  84%, 100%)", // --ui2
           darkgray:      "hsla( 0,   0%,   6%, 100%)", // --tx1
           dark:          "hsla( 0,   0%,  46%, 100%)", // --tx2
           secondary:     "hsla(22,  64%,  54%, 100%)", // --ax1
@@ -40,8 +40,8 @@ const config: QuartzConfig = {
         },
         darkMode: {
           light:         "hsla( 0,   0%,  15%, 100%)", // --bg1
-          lightgray:     "hsla( 0,   0%,  21%, 100%)", // --ui1
-          gray:          "hsla( 0,   0%,  35%, 100%)", // --ui3
+          lightgray:     "hsla( 0,   0%,  13%, 100%)", // --bg2
+          gray:          "hsla( 0,   0%,  27%, 100%)", // --ui2
           darkgray:      "hsla( 0,   0%,  82%, 100%)", // --tx1
           dark:          "hsla( 0,   0%,  60%, 100%)", // --tx2
           secondary:     "hsla(22,  64%,  65%, 100%)", // --ax1 :: calc(var(--accent-l) * 60 / 50)
@@ -66,7 +66,7 @@ const config: QuartzConfig = {
           light: "material-theme-lighter",
           dark:  "material-theme-darker"
         },
-        keepBackground: true
+        keepBackground: false
       }),
       Plugin.ObsidianFlavoredMarkdown({
         enableInHtmlEmbed: true
@@ -93,54 +93,50 @@ const config: QuartzConfig = {
     emitters: [
       Plugin.ComponentResources(),
       Plugin.ContentPage(),
-      Plugin.FolderPage(/*{
+      Plugin.FolderPage({
         sort: (a, b) => {
-          if ((!a.file && !b.file) || (a.file && b.file)) {
-            if ((typeof a.file?.frontmatter?.quartzSortString === "string") && (typeof b.file?.frontmatter?.quartzSortString === "string")) {
-                return a.file.frontmatter.quartzSortString.localeCompare(b.file.frontmatter.quartzSortString, undefined, {
-                  numeric: true,
-                  sensitivity: "base",
-                  ignorePunctuation: true
-                })
-            } else {
-              return a.displayName.localeCompare(b.displayName, undefined, {
-                numeric: true,
-                sensitivity: "base",
-                ignorePunctuation: true
-              })
-            }
+          let isJournalTag = /^Journal(\/.+)?$/
+
+          let aComparisonString = a.frontmatter?.title ?? ""
+          let bComparisonString = b.frontmatter?.title ?? ""
+
+          if ((a.frontmatter?.tags?.some(tag => isJournalTag.test(tag))) && (b.frontmatter?.tags?.some(tag => isJournalTag.test(tag)))) {
+            aComparisonString = a.frontmatter.date ?? aComparisonString
+            bComparisonString = b.frontmatter.date ?? bComparisonString
           }
-          if (a.file && !b.file) {
-            return 1
-          } else {
-            return -1
-          }
+
+          aComparisonString = aComparisonString.toLowerCase().replace(/(^| )(a|an|the)( |$)/g, " ").replace(/\([^\)]*\)/g, " ").replace(/ +/g, " ").trim()
+          bComparisonString = bComparisonString.toLowerCase().replace(/(^| )(a|an|the)( |$)/g, " ").replace(/\([^\)]*\)/g, " ").replace(/ +/g, " ").trim()  
+
+          return aComparisonString.localeCompare(bComparisonString, undefined, {
+            numeric: true,
+            sensitivity: "base",
+            ignorePunctuation: true
+          })
         }
-      }*/),
-      Plugin.TagPage(/*{
+      }),
+      Plugin.TagPage({
         sort: (a, b) => {
-          if ((!a.file && !b.file) || (a.file && b.file)) {
-            if ((typeof a.file?.frontmatter?.quartzSortString === "string") && (typeof b.file?.frontmatter?.quartzSortString === "string")) {
-                return a.file.frontmatter.quartzSortString.localeCompare(b.file.frontmatter.quartzSortString, undefined, {
-                  numeric: true,
-                  sensitivity: "base",
-                  ignorePunctuation: true
-                })
-            } else {
-              return a.displayName.localeCompare(b.displayName, undefined, {
-                numeric: true,
-                sensitivity: "base",
-                ignorePunctuation: true
-              })
-            }
+          let isJournalTag = /^Journal(\/.+)?$/
+
+          let aComparisonString = a.frontmatter?.title ?? ""
+          let bComparisonString = b.frontmatter?.title ?? ""
+
+          if ((a.frontmatter?.tags?.some(tag => isJournalTag.test(tag))) && (b.frontmatter?.tags?.some(tag => isJournalTag.test(tag)))) {
+            aComparisonString = a.frontmatter.date ?? aComparisonString
+            bComparisonString = b.frontmatter.date ?? bComparisonString
           }
-          if (a.file && !b.file) {
-            return 1
-          } else {
-            return -1
-          }
+
+          aComparisonString = aComparisonString.toLowerCase().replace(/(^| )(a|an|the)( |$)/g, " ").replace(/\([^\)]*\)/g, " ").replace(/ +/g, " ").trim()
+          bComparisonString = bComparisonString.toLowerCase().replace(/(^| )(a|an|the)( |$)/g, " ").replace(/\([^\)]*\)/g, " ").replace(/ +/g, " ").trim()
+
+          return aComparisonString.localeCompare(bComparisonString, undefined, {
+            numeric: true,
+            sensitivity: "base",
+            ignorePunctuation: true
+          })
         }
-      }*/),
+      }),
       Plugin.ContentIndex({
         rssLimit:          1024,
         rssFullHtml:       true,
