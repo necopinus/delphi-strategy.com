@@ -82,7 +82,7 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex, limit?: nu
     <channel>
       <title>${escapeHTML(cfg.pageTitle)}</title>
       <link>https://${base}</link>
-      <description>Commentary and tales from ${escapeHTML(
+      <description>Essays and other writings from ${escapeHTML(
         cfg.pageTitle,
       )}</description>
       <generator>Quartz - quartz.jzhao.xyz</generator>
