@@ -10,7 +10,7 @@ const config: QuartzConfig = {
   configuration: {
     pageTitle:           "Delphi Foresight Strategy",
     pageTitleSuffix:     " :: Delphi Foresight Strategy",
-    enableSPA:           true,
+    enableSPA:           false,
     enablePopovers:      false,
     analytics:           null,
     locale:              "en-US",
