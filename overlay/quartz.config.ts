@@ -33,10 +33,14 @@ const config: QuartzConfig = {
           gray:          "hsla( 0,   0%,  84%, 100%)", // --ui2
           darkgray:      "hsla( 0,   0%,   6%, 100%)", // --tx1
           dark:          "hsla( 0,   0%,   4%, 100%)", // --tx1 :: calc(var(--base-l) - 92%)
-          secondary:     "hsla(22,  64%,  54%, 100%)", // --ax1
-          tertiary:      "hsla(22,  64%,  44%, 100%)", // --ax2
-          highlight:     "hsla(22,  50%,  76%,  30%)", // --hl1
-          textHighlight: "hsla(22, 100%,  50%,  50%)"  // --hl2 :: use --accent-h, not 60
+          secondary:     "hsla(24,  44%,  50%, 100%)", // --ax1
+          tertiary:      "hsla(24,  44%,  42%, 100%)", // --ax2
+          /*
+          highlight:     "hsla(24,  50%,  30%,  30%)", // --hl1
+          textHighlight: "hsla(24, 100%,  50%,  50%)"  // --hl2 :: use --accent-h, not 60
+          */
+          highlight:     "hsla(24,  50%,  30%,  10%)",
+          textHighlight: "hsla(24,  50%,  50%,  30%)"
         },
         darkMode: {
           light:         "hsla( 0,   0%,  15%, 100%)", // --bg1
@@ -44,10 +48,14 @@ const config: QuartzConfig = {
           gray:          "hsla( 0,   0%,  27%, 100%)", // --ui2
           darkgray:      "hsla( 0,   0%,  82%, 100%)", // --tx1
           dark:          "hsla( 0,   0%,  86%, 100%)", // --tx1 :: calc(var(--base-l) + 71%)
-          secondary:     "hsla(22,  64%,  65%, 100%)", // --ax1 :: calc(var(--accent-l) * 60 / 50)
-          tertiary:      "hsla(22,  64%,  71%, 100%)", // --ax2
-          highlight:     "hsla(22,  50%,  40%,  30%)", // --hl1
-          textHighlight: "hsla(22, 100%,  66%,  30%)"  // --hl2 :: use --accent-h, not 33
+          secondary:     "hsla(23,  27%,  66%, 100%)", // --ax1
+          tertiary:      "hsla(23,  27%,  74%, 100%)", // --ax2
+          /*
+          highlight:     "hsla(23,  50%,  40%,  30%)", // --hl1
+          textHighlight: "hsla(23, 100%,  66%,  30%)"  // --hl2 :: use --accent-h, not 33
+          */
+          highlight:     "hsla(23,  50%,  40%,  10%)",
+          textHighlight: "hsla(23,  50%,  66%,  10%)"
         }
       }
     }
@@ -63,8 +71,8 @@ const config: QuartzConfig = {
       }),
       Plugin.SyntaxHighlighting({
         theme: {
-          light: "material-theme-lighter",
-          dark:  "material-theme-darker"
+          light: "vitesse-light",
+          dark:  "vitesse-dark"
         },
         keepBackground: false
       }),
