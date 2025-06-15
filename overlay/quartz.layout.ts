@@ -56,10 +56,7 @@ export const defaultListPageLayout: PageLayout = {
       spacerSymbol: "/",
       rootName:     "Delphi Foresight Strategy",
       hideOnRoot:   false
-    }),
-    Component.Spacer(),
-    Component.Darkmode(),
-    Component.Search()
+    })
   ],
   beforeBody: [],
   afterBody: [],
