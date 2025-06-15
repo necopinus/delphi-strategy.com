@@ -22,10 +22,7 @@ export const defaultContentPageLayout: PageLayout = {
       spacerSymbol: "/",
       rootName:     "Delphi Foresight Strategy",
       hideOnRoot:   false
-    }),
-    Component.Spacer(),
-    Component.Darkmode(),
-    Component.Search()
+    })
   ],
   beforeBody: [
     Component.ContentMeta(),
@@ -36,6 +33,17 @@ export const defaultContentPageLayout: PageLayout = {
   ],
   left: [],
   right: [
+    Component.Flex({
+      components: [
+        {
+          Component: Component.Search(),
+          grow: true,
+        },
+        {
+          Component: Component.Darkmode()
+        }
+      ]
+    }),
     Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents())
   ]
