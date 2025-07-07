@@ -17,7 +17,6 @@ const config: QuartzConfig = {
     baseUrl:             "delphi-strategy.com/some-remarks",
     ignorePatterns:      [],
     defaultDateType:     "created",
-    generateSocialImages: true,
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
