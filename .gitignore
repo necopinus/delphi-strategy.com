@@ -4,10 +4,3 @@
 ._*
 *~
 *.swp
-
-# Ignore build directories and files
-build
-.nomedia
-www/some-remarks/.obsidian
-www/some-remarks/.trash
-www/some-remarks/templates
