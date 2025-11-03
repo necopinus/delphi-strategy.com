@@ -10,12 +10,12 @@
 
 [[redirects]]
   from = "https://delphi-strategy.com/some-remarks/*"
-  to = "https://publish.obsidian.md/serve?url=www.delphi-strategy.com/some-remarks/:splat"
+  to = "https://publish.obsidian.md/serve?url=delphi-strategy.com/some-remarks/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "https://www.delphi-strategy.com/some-remarks/*"
-  to = "https://publish.obsidian.md/serve?url=www.delphi-strategy.com/some-remarks/:splat"
+  to = "https://publish.obsidian.md/serve?url=delphi-strategy.com/some-remarks/:splat"
   status = 200
   force = true
