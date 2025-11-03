@@ -9,13 +9,13 @@
     X-XSS-Protection = "1; mode=block"
 
 [[redirects]]
-  from = "https://delphi-strategy.com/some-notes/*"
-  to = "https://publish.obsidian.md/serve?url=www.delphi-strategy.com/some-notes/:splat"
+  from = "https://delphi-strategy.com/some-remarks/*"
+  to = "https://publish.obsidian.md/serve?url=www.delphi-strategy.com/some-remarks/:splat"
   status = 200
   force = true
 
 [[redirects]]
-  from = "https://www.delphi-strategy.com/some-notes/*"
-  to = "https://publish.obsidian.md/serve?url=www.delphi-strategy.com/some-notes/:splat"
+  from = "https://www.delphi-strategy.com/some-remarks/*"
+  to = "https://publish.obsidian.md/serve?url=www.delphi-strategy.com/some-remarks/:splat"
   status = 200
   force = true
